@@ -1,0 +1,10 @@
+.no-hover-effect {
+  pointer-events: none;
+}
+
+.no-hover-effect:hover {
+  background-color: initial; /* Set the desired background color */
+  color: initial; /* Set the desired text color */
+  border-color: initial; /* Set the desired border color */
+  cursor: not-allowed;
+}

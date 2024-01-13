@@ -1,0 +1,91 @@
+<div class="main-container">
+<!--  <div class="max-w-sm flex mx-4 gap-2 my-4">-->
+<!--    <div class="relative">-->
+<!--      <input-->
+<!--        autocomplete="off"-->
+<!--        class="appearance-none border-2 pl-10 border-gray-300 hover:border-gray-400 transition-colors rounded-md w-full py-2 px-3 text-gray-800"-->
+<!--        id="username"-->
+<!--        type="text"-->
+<!--        placeholder="Search..."-->
+<!--        [(ngModel)]="searchQuery"-->
+<!--      />-->
+<!--      <div class="absolute right-0 inset-y-0 flex items-center cursor-pointer clear-search">-->
+<!--        <svg-->
+<!--          (click)="clearSearchInput()"-->
+<!--          xmlns="http://www.w3.org/2000/svg"-->
+<!--          class="-ml-1 mr-3 h-5 w-5 text-gray-400 hover:text-gray-500"-->
+<!--          fill="none"-->
+<!--          viewBox="0 0 24 24"-->
+<!--          stroke="currentColor"-->
+<!--        >-->
+<!--          <path-->
+<!--            stroke-linecap="round"-->
+<!--            stroke-linejoin="round"-->
+<!--            stroke-width="2"-->
+<!--            d="M6 18L18 6M6 6l12 12"-->
+<!--          />-->
+<!--        </svg>-->
+<!--      </div>-->
+<!--      <div class="absolute left-0 inset-y-0 flex items-center search-logo">-->
+<!--        <svg-->
+<!--          xmlns="http://www.w3.org/2000/svg"-->
+<!--          class="h-6 w-6 ml-3 text-gray-400 hover:text-gray-500"-->
+<!--          fill="none"-->
+<!--          viewBox="0 0 24 24"-->
+<!--          stroke="currentColor"-->
+<!--        >-->
+<!--          <path-->
+<!--            stroke-linecap="round"-->
+<!--            stroke-linejoin="round"-->
+<!--            stroke-width="2"-->
+<!--            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"-->
+<!--          />-->
+<!--        </svg>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <button-->
+<!--      (click)="onSearch()"-->
+<!--      class="relative z-[2] search-btn rounded-r border-2 border-primary px-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"-->
+<!--      type="button"-->
+<!--      id="button-addon3"-->
+<!--      data-te-ripple-init-->
+<!--    >-->
+<!--      Search-->
+<!--    </button>-->
+<!--  </div>-->
+
+  <ul class="mt-2 mx-5 my-5 users">
+    <li
+      class="border border-gray-300 rounded-lg p-2 mb-2"
+      *ngFor="let user of searchResults"
+      (click)="onUser(user)"
+    >
+      {{ user.name }}
+    </li>
+    <li *ngIf="isFound">No users found</li>
+  </ul>
+  <div class="recent-users">
+    <div class="title bg-teal-500 ">
+      <h2>
+        recent users
+      </h2>
+    </div>
+
+    <div class="user-list">
+      <div *ngFor="let chatUser of recentChatUsers" (click)="onUser(chatUser.data)">
+        <div class="user-info">
+          <img class="w-10 h-10 rounded-full" src="assets/images/avatar.png" alt=""/>
+          <div class="font-medium dark:text-black">
+            <div class="user-name">{{ chatUser.data.name }}</div>
+            <div style="display: flex; flex-direction: row;">
+              <span class="lastMsg" *ngIf="userId === chatUser.lastMessage.senderId">You : &nbsp; </span>
+              <span class="lastMsg" *ngIf="userId !== chatUser.lastMessage.senderId">{{ chatUser.data.name }}
+                : &nbsp; </span>
+              <div class="lastMsg">{{ chatUser.lastMessage.content }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<nav class="flex items-center justify-between flex-wrap bg-teal-500 p-4">
+  <div class="flex items-center flex-shrink-0 text-white mr-6 cursor-pointer">
+    <span class="font-semibold text-xl tracking-tight" (click)="onChat()"
+    >Chats</span
+    >
+  </div>
+  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="flex justify-end w-full">
+      <div class="flex flex-end mr-6 text-xl text-white">
+        {{ currentUser?.name }}
+      </div>
+      <div>
+        <a
+          (click)="logout()"
+          class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+        >Logout</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>

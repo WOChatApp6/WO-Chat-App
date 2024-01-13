@@ -1,0 +1,256 @@
+<section class="">
+  <div
+    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+  >
+    <div
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:border-gray-700"
+    >
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1
+          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black"
+        >
+          Sign in to your account
+        </h1>
+        <form [formGroup]="LoginForm" class="space-y-4 md:space-y-6">
+          <div>
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+              >Your email</label
+            >
+            <input
+              type="email"
+              name="email"
+              id="email"
+              formControlName="email"
+              autocomplete="off"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded block w-full p-2.5"
+              placeholder="name@company.com"
+              required
+            />
+            <div
+              *ngIf="
+                LoginForm.get('email')?.hasError('required') &&
+                (LoginForm.get('email')?.touched ||
+                  LoginForm.get('email')?.dirty)
+              "
+              class="text-red-600 text-sm"
+            >
+              Email is required
+            </div>
+            <div
+              *ngIf="
+                LoginForm.get('email')?.hasError('email') &&
+                (LoginForm.get('email')?.touched ||
+                  LoginForm.get('email')?.dirty)
+              "
+              class="text-red-600 text-sm"
+            >
+              Invalid email format
+            </div>
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+              >Password</label
+            >
+            <input
+              type="password"
+              name="password"
+              formControlName="password"
+              autocomplete="off"
+              id="password"
+              placeholder="••••••••"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
+              required
+            />
+            <div
+              *ngIf="
+                LoginForm.get('password')?.hasError('required') &&
+                (LoginForm.get('password')?.touched ||
+                  LoginForm.get('password')?.dirty)
+              "
+              class="text-red-600 text-sm"
+            >
+              Password is required
+            </div>
+            <div
+              *ngIf="
+                LoginForm.get('password')?.hasError('minlength') &&
+                (LoginForm.get('password')?.touched ||
+                  LoginForm.get('password')?.dirty)
+              "
+              class="text-red-600 text-sm"
+            >
+              Password must be at least 6 characters long
+            </div>
+          </div>
+          <div class="flex items-center justify-end">
+            <a
+              class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+              (click)="forgotPassword()"
+              >Forgot password?</a
+            >
+          </div>
+          <button
+            type="submit"
+            (click)="onSubmit()"
+            class="w-full text-black bg-primary-600 border border-black font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          >
+            Sign in
+          </button>
+          <p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>
+          <div>
+            <div class="px-6 sm:px-0 max-w-sm" (click)="loginWithGoogle()">
+              <button
+                type="button"
+                class="text-white w-full bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+              >
+                <svg
+                  class="mr-2 -ml-1 w-4 h-4"
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fab"
+                  data-icon="google"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 488 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+                  ></path></svg
+                >Sign in with Google
+                <div></div>
+              </button>
+            </div>
+            <div class="px-6 sm:px-0 max-w-sm" (click)="loginWithFacebook()">
+              <button
+                type="button"
+                class="text-white w-full bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  x="0px"
+                  y="0px"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 48 48"
+                >
+                  <linearGradient
+                    id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1"
+                    x1="9.993"
+                    x2="40.615"
+                    y1="9.993"
+                    y2="40.615"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#2aa4f4"></stop>
+                    <stop offset="1" stop-color="#007ad9"></stop>
+                  </linearGradient>
+                  <path
+                    fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)"
+                    d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"
+                  ></path>
+                  <path
+                    fill="#fff"
+                    d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z"
+                  ></path></svg
+                >Sign in with Facebook
+                <div></div>
+              </button>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <p class="text-sm font-light text-black">
+              Don’t have an account yet?
+              <a
+                class="font-medium text-black hover:underline cursor-pointer"
+                (click)="onSignup()"
+                >Sign up</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal backdrop -->
+<div
+  *ngIf="isForgot"
+  class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur bg-gray-800 bg-opacity-75"
+  tabindex="-1"
+>
+  <div class="bg-white w-96 rounded-lg p-4" #forgotPasswordModal>
+    <div class="flex justify-between items-center">
+      <h2 class="text-2xl font-semibold mb-4">Forgot Password</h2>
+      <button class="mt-[-16px]" (click)="closeModal()">
+        <img src="assets/images/cross-icon.png" height="15px" width="22px" />
+      </button>
+    </div>
+    <p class="mb-4" *ngIf="!isEmailExists">
+      Enter your email to reset your password.
+    </p>
+    <div class="mb-4">
+      <form [formGroup]="forgotPwdForm" *ngIf="!isEmailExists">
+        <input
+          type="email"
+          class="w-full p-2 border rounded"
+          formControlName="email"
+          [(ngModel)]="emailForForgotPassword"
+          placeholder="Your email"
+          required
+        />
+        <div
+          *ngIf="
+            forgotPwdForm.get('email')?.hasError('required') &&
+            (forgotPwdForm.get('email')?.touched ||
+              forgotPwdForm.get('email')?.dirty) &&
+            !isEmailNotExists
+          "
+          class="text-red-600 text-sm"
+        >
+          Email is required
+        </div>
+        <div
+          *ngIf="
+            forgotPwdForm.get('email')?.hasError('email') &&
+            (forgotPwdForm.get('email')?.touched ||
+              forgotPwdForm.get('email')?.dirty) &&
+            !isEmailNotExists
+          "
+          class="text-red-600 text-sm"
+        >
+          Invalid email format
+        </div>
+        <div *ngIf="isEmailNotExists" class="text-red-600 flex justify-center">
+          <h3>Email is not exists</h3>
+        </div>
+      </form>
+      <h1 *ngIf="isEmailExists" class="flex justify-center text-base">
+        Password reset email sent successfully
+      </h1>
+    </div>
+    <div class="flex justify-center">
+      <button
+        class="px-4 py-2 bg-blue-500 text-white rounded"
+        *ngIf="!isEmailExists"
+        [ngStyle]="{ cursor: !forgotPwdForm.valid ? 'not-allowed' : 'pointer' }"
+        [disabled]="!forgotPwdForm.valid"
+        (click)="sendMail()"
+      >
+        Reset
+      </button>
+      <button
+        class="px-4 py-2 bg-blue-500 text-white rounded"
+        *ngIf="isEmailExists"
+        (click)="done()"
+      >
+        Done
+      </button>
+    </div>
+  </div>
+</div>

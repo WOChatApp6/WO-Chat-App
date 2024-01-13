@@ -1,0 +1,302 @@
+.no-data {
+  height: calc(100vh - 4rem);
+  /*background-color: antiquewhite;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conversation-header {
+  border: 1px solid black;
+  margin-top: 2px;
+  padding: 1rem;
+}
+
+.conversation-container {
+  position: relative;
+  height: calc(100vh - 9rem);
+  display: flex;
+  /*flex-direction: column;*/
+  justify-content: center;
+}
+
+.chat-data {
+  display: flex;
+  flex-direction: column;
+  background-color: antiquewhite;
+  /*border: 1px solid black;*/
+  width: calc(100vh - 12rem);
+  height: calc(100vh - 13.5rem);
+  overflow: auto;
+  /*flex-grow: 1;*/
+}
+
+.input-data {
+  border: 1px solid black;
+  width: calc(100vh - 12rem);
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.fields {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px 0;
+}
+
+
+.fields p {
+  position: absolute;
+  margin-right: 42rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.input {
+  width: 70%;
+  height: 3rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.submit {
+  height: 2.5rem;
+  border: black;
+  padding: 0 1rem 0 1rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}
+
+.message-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.sent-messages, .received-messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-container {
+  /* Your existing styles for individual message items */
+  margin: 5px; /* Adjust margin as needed */
+}
+
+.sent {
+  /*text-align: right;*/
+  /*background-color: #d3f7d3; !* Color for sent messages *!*/
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 0.5rem;
+  margin-left: 30%;
+  margin-right: 0.5rem;
+}
+
+.received {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  /*background-color: #f0f0f0; !* Color for received messages *!*/
+  margin-right: 30%;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  /* Your styles for the message content */
+}
+
+.sent-msgTime {
+  font-size: x-small;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.receive-msgTime {
+  font-size: x-small;
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+.status {
+  /*display: flex;*/
+  justify-content: center;
+  /*padding: 5px;*/
+  /*width: 100%;*/
+  text-align: center;
+  border-bottom: 1px solid #ddcec1;
+  line-height: 0;
+  margin: 20px 0
+}
+
+.status span {
+  background: #f6f6f6;
+  padding: 0px 20px;
+  border-radius: 20px;
+}
+
+
+/*.image-container {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  max-width: 96%;*/
+/*  overflow-x: auto;*/
+/*  width: 100%;*/
+/*  !*position: relative;*!*/
+/*}*/
+.image-container {
+  display: flex;
+  align-items: center;
+  max-width: 96%;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+
+.button-left,
+.button-right {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  color: #000; /* Set button color */
+  background: #e0e0e0; /* Set button background color */
+  padding: 5px; /* Set button padding */
+}
+
+.button-left {
+  z-index: 10;
+  left: 0;
+}
+
+.button-right {
+  right: 0;
+}
+
+
+.image-wrapper {
+  position: relative;
+  padding: 10px 10px 5px 12px;
+}
+
+.image {
+  height: 85px;
+  width: 105px !important;
+  max-width: none !important;
+}
+
+
+.video {
+  height: 85px;
+  width: 105px !important;
+  max-width: none !important;
+  border: 1px solid #d9c1c1;
+}
+
+.media-image,
+.media-video{
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
+  margin: 5px 0;
+}
+
+
+
+.remove-button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: none;
+  cursor: pointer;
+  color: red;
+  border-radius: 50% !important;
+  padding: 5px !important;
+  background: #e0e0e0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  height: 10px;
+  width: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border: 4px solid transparent;
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: #aaaaaa;
+  min-height: 40px;
+}
+
+
+/*.message-container {*/
+/*  !* Your existing styles for individual message items *!*/
+/*  margin: 5px; !* Adjust margin as needed *!*/
+/*}*/
+
+/*.sent {*/
+/*  !*text-align: right;*!*/
+/*  !*background-color: #d3f7d3; !* Color for sent messages *!*!*/
+/*  display: flex;*/
+/*  gap: 10px;*/
+/*  float: right;*/
+/*}*/
+
+/*.received {*/
+/*  text-align: left;*/
+/*  background-color: #f0f0f0; !* Color for received messages *!*/
+/*}*/
+
+
+/*.conversation-container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  height: calc(100vh - 9rem);*/
+/*  border: 1px solid black;*/
+/*}*/
+
+/*.chat-data {*/
+/*  background-color: antiquewhite;*/
+/*  border: 1px solid black;*/
+/*  width: calc(100% - 2rem); !* Adjust to fit your design *!*/
+/*  flex-grow: 1;*/
+/*}*/
+
+/*.input-data {*/
+/*  border: 1px solid black;*/
+/*  height: 3rem; !* Adjust to your desired height *!*/
+/*  width: 100%;*/
+/*  flex-shrink: 0; !* Prevent input-data from shrinking *!*/
+/*}*/

@@ -1,0 +1,116 @@
+<div
+  class="flex items-center space-x-4 conversation-header mx-4"
+  *ngIf="activeUserChat"
+>
+  <img class="w-10 h-10 rounded-full" src="assets/images/avatar.png" alt=""/>
+  <div class="font-medium dark:text-black">
+    <div> {{ activeUserChat?.name }}</div>
+    <div class="text-sm text-gray-500 dark:text-gray-400">
+      Email: {{ activeUserChat?.email }}
+    </div>
+  </div>
+</div>
+<div
+  class="conversation-container mx-4 border border-black"
+  *ngIf="activeUserChat"
+>
+  <div class="chat-data">
+    <div class="message-data" *ngFor="let message of messagesArray;trackBy: trackByFn; let i = index">
+      <div *ngIf="selectDate(i)" class="status">
+        <span>{{ messageHeader(message.timestamp) }}</span>
+      </div>
+      <div class="sent-messages">
+        <div *ngIf=" currentUser.userId === message.senderId" class="message-container sent">
+          <div class="message-content" (click)="onMessage(message)">
+            <span>{{ message.content }}</span>
+            <div *ngIf="message.medias && message.medias.length > 0">
+              <div *ngFor="let media of message.medias">
+                <img *ngIf="media.contentType.startsWith('image')" [src]="media.url" alt="Image" class="media-image"/>
+                <video *ngIf="media.contentType.startsWith('video')" [src]="media.url" class="media-video" controls></video>
+              </div>
+            </div>
+            <span class="sent-msgTime">{{ compareDate(message.timestamp) }}</span>
+          </div>
+          <img class="w-10 h-10 rounded-full" src="assets/images/avatar.png" alt=""/>
+          <!--          <div *ngIf="message.medias && message.medias.length > 0">-->
+          <!--            <div *ngFor="let media of message.medias">-->
+          <!--              <img *ngIf="media.contentType === 'image'" [src]="media.url" alt="Image" class="media-image" />-->
+          <!--              <video *ngIf="media.contentType === 'video'" [src]="media.url" class="media-video" controls></video>-->
+          <!--            </div>-->
+          <!--          </div>-->
+        </div>
+      </div>
+
+      <div class="received-messages">
+        <div *ngIf=" currentUser.userId !== message.senderId" class="message-container received">
+          <img class="w-10 h-10 rounded-full" src="assets/images/avatar.png" alt=""/>
+          <div class="message-content">
+            <span>{{ message.content }}</span>
+            <div *ngIf="message.medias && message.medias.length > 0">
+              <div *ngFor="let media of message.medias">
+                <img *ngIf="media.contentType.startsWith('image')" [src]="media.url" alt="Image" class="media-image"/>
+                <video *ngIf="media.contentType.startsWith('video')" [src]="media.url" class="media-video" controls></video>
+              </div>
+            </div>
+            <span class="receive-msgTime">{{compareDate(message.timestamp) }}</span>
+          </div>
+<!--          <div *ngIf="message.medias && message.medias.length > 0">-->
+<!--            <div *ngFor="let media of message.medias">-->
+<!--              <img *ngIf="media.contentType.startsWith('image')" [src]="media.url" alt="Image" class="media-image"/>-->
+<!--              <video *ngIf="media.contentType.startsWith('video')" [src]="media.url" class="media-video" controls></video>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </div>
+    <div class="input-data">
+      <div class="image-container" *ngIf="displayMediaList.length > 0">
+        <button class="button-left" (click)="prev($event)" *ngIf="displayMediaList.length > 5"><</button>
+
+        <div
+          *ngFor="let media of displayMediaList; let i = index"
+          class="image-wrapper"
+          (click)="onClickMediaFile(i)"
+        >
+          <img
+            [src]="media.url"
+            *ngIf="media.contentType === 'image'"
+            alt="Image"
+            class="image"
+          />
+          <video *ngIf="media.contentType === 'video'" class="video">
+            <source [src]="media.url" type="video/mp4"/>
+            Your browser does not support the video tag.
+          </video>
+          <button (click)="removeMedia(i)" class="remove-button">
+            <img class="img" src="../../../../assets/images/cross-icon.png"/>
+          </button>
+        </div>
+        <button class="button-right" (click)="next($event)" *ngIf="displayMediaList.length > 5">></button>
+      </div>
+      <div class="fields">
+        <p (click)="onUploadMediaFiles($event)"
+        >+</p>
+        <input
+          type="file"
+          (change)="uploadMediaFiles($event)"
+          accept=".jpg, .jpeg, .png, .mp4"
+          multiple
+          hidden
+          #mediaFileUploader
+        />
+        <input type="text" [(ngModel)]="message" class="input">
+        <button class="submit" (click)="onSendMessage()" [disabled]="!message && !displayMediaList.length"
+                [ngStyle]="{
+              cursor: !message && !displayMediaList.length ? 'not-allowed' : 'pointer'
+            }">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="no-data flex" *ngIf="!activeUserChat && currentUser">
+  <h1 class="text-3xl">Welcome {{ currentUser.name }}</h1>
+</div>

@@ -1,0 +1,16 @@
+.app-container {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  height: calc(100vh - 4rem);
+}
+.user-list {
+  background: #f0f0f0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.chat {
+  background: #ffffff;
+  height: 100%;
+  overflow-y: auto;
+}
